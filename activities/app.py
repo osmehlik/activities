@@ -7,7 +7,7 @@ from activities.report import report
 import argparse
 
 
-def main():
+def make_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         'action',
@@ -23,6 +23,11 @@ def main():
         help="when reporting, sort by, one of: aa/ad/la/ld",
         default=DEFAULT_SORT_BY
     )
+    return parser
+
+
+def main():
+    parser = make_parser()
     args = parser.parse_args()
     if args.action == "track":
         track(args.f)
