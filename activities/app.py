@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 
-from constants import DEFAULT_DATABASE_PATH, DEFAULT_SORT_BY
-from track import track
-from report import report
+from activities.constants import DEFAULT_DATABASE_PATH, DEFAULT_SORT_BY
+from activities.track import track
+from activities.report import report
 import argparse
 
 

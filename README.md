@@ -3,12 +3,18 @@
 
 A super simple method for tracking usage of time for programmers.
 
-## Usage
-
-### Add activity
+## Installation
 
 ```
-$ ./activities/app.py track
+pip install .
+```
+
+## Usage
+
+### Track a new activity
+
+```
+$ activities-cli track
 activity name? studying
 activity studying started
 press enter to finish
@@ -24,6 +30,14 @@ started,finished,activity
 
 ### Show an activities report
 
+To show total time spent on different activities, run:
+
 ```
-$ ./activities/app.py report
+$ activities-cli report
+```
+
+## Uninstallation
+
+```
+pip uninstall activities
 ```

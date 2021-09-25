@@ -1,4 +1,4 @@
-from constants import DATETIME_FORMAT
+from activities.constants import DATETIME_FORMAT
 from datetime import datetime
 import csv
 import sys
