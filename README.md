@@ -3,10 +3,12 @@
 
 A super simple method for tracking usage of time for programmers.
 
-Example usage:
+## Usage
+
+### Add activity
 
 ```
-$ ./activities
+$ ./activities/app.py track
 activity name? studying
 activity studying started
 press enter to finish
@@ -20,6 +22,8 @@ started,finished,activity
 2020-12-13 13:31:24,2020-12-13 15:12:42,studying
 ```
 
-There currently isn't any tool to show activities report
-from generated `activities.csv` file.
+### Show an activities report
 
+```
+$ ./activities/app.py report
+```
