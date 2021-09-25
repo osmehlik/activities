@@ -1,7 +1,7 @@
-
 from constants import DATETIME_FORMAT
 from datetime import datetime
 import os
+
 
 def track(path):
     """Adds activity to file"""

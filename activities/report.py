@@ -1,8 +1,8 @@
-
 from constants import DATETIME_FORMAT
 from datetime import datetime
 import csv
 import sys
+
 
 def report(path, sort_by="ld"):
     """Shows activity report from file"""
@@ -14,7 +14,7 @@ def report(path, sort_by="ld"):
     activity_max_len = 0
     with open(path, "r") as f:
         reader = csv.reader(f)
-        next(reader) # skip header
+        next(reader)  # skip header
         for row in reader:
             started = datetime.strptime(row[0], DATETIME_FORMAT)
             finished = datetime.strptime(row[1], DATETIME_FORMAT)
