@@ -32,13 +32,13 @@ def report(path, sort_by="ld"):
     activities = list(activity_to_length.items())
 
     # Sort list of activities
-    if sort_by == "aa":
+    if sort_by == "aa":  # activity ascending
         activities = sorted(activities, key=lambda row: row[0], reverse=False)
-    elif sort_by == "ad":
+    elif sort_by == "ad":  # activity descending
         activities = sorted(activities, key=lambda row: row[0], reverse=True)
-    elif sort_by == "la":
+    elif sort_by == "la":  # length ascending
         activities = sorted(activities, key=lambda row: row[1], reverse=False)
-    elif sort_by == "ld":
+    elif sort_by == "ld":  # length descending
         activities = sorted(activities, key=lambda row: row[1], reverse=True)
     else:
         print("Unknown sort_by value")
