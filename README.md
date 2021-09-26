@@ -36,6 +36,19 @@ To show total time spent on different activities, run:
 $ activities-cli report
 ```
 
+You can sort report output with `-s`*METHOD*, where *METHOD* is one of:
+
+- `aa` - sort by activity, ascending
+- `ad` - sort by activity, descending
+- `la` - sort by length, ascending
+- `ld` - sort by length, descending
+
+So, to show report sorted by activity, ascending, run:
+
+```
+$ activities-cli report -saa
+```
+
 ## Uninstallation
 
 ```
