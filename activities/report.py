@@ -1,10 +1,10 @@
-from activities.constants import DATETIME_FORMAT
+from activities.constants import DATETIME_FORMAT, DEFAULT_SORT_BY
 from datetime import datetime
 import csv
 import sys
 
 
-def report(path, sort_by="ld"):
+def report(path, sort_by=DEFAULT_SORT_BY):
     """Shows activity report from file"""
 
     # Populate activity_to_length, which is
