@@ -62,6 +62,9 @@ def report(path,
         describe_length = extract_total_hours_str
     elif timedelta_fmt == "tm":
         describe_length = extract_total_minutes_str
+    else:
+        print("Unknown time length format")
+        sys.exit(1)
 
     # Print activities and lengths
     for activity, length in activities:
