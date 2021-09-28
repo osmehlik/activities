@@ -1,10 +1,15 @@
-from activities.constants import DATETIME_FORMAT, DEFAULT_SORT_BY
+from activities.constants import DATETIME_FORMAT, \
+                                 DEFAULT_SORT_BY, \
+                                 DEFAULT_TIMEDELTA_FORMAT
+from activities.time_extractors import *
 from datetime import datetime
 import csv
 import sys
 
 
-def report(path, sort_by=DEFAULT_SORT_BY):
+def report(path,
+           sort_by=DEFAULT_SORT_BY,
+           timedelta_fmt=DEFAULT_TIMEDELTA_FORMAT):
     """Shows activity report from file"""
 
     # Populate activity_to_length, which is
@@ -44,6 +49,20 @@ def report(path, sort_by=DEFAULT_SORT_BY):
         print("Unknown sort_by value")
         sys.exit(1)
 
-    # Print activities
+    # Prepare functions to describe activity
+    def describe_activity(activity):
+        return activity.rjust(activity_max_len, " ")
+
+    # Prepare functions to describe length
+    if timedelta_fmt == "python-default":
+        describe_length = str
+    elif timedelta_fmt == "td":
+        describe_length = extract_total_days_str
+    elif timedelta_fmt == "th":
+        describe_length = extract_total_hours_str
+    elif timedelta_fmt == "tm":
+        describe_length = extract_total_minutes_str
+
+    # Print activities and lengths
     for activity, length in activities:
-        print(activity.rjust(activity_max_len, " "), length)
+        print(describe_activity(activity), describe_length(length))
