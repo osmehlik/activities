@@ -1,11 +1,7 @@
+from activities.constants import NUM_SECONDS_IN_DAY, \
+                                 NUM_SECONDS_IN_HOUR, \
+                                 NUM_SECONDS_IN_MINUTE
 from datetime import timedelta
-
-
-NUM_SECONDS_IN_MINUTE = 60
-NUM_MINUTES_IN_HOUR = 60
-NUM_HOURS_IN_DAY = 24
-NUM_SECONDS_IN_HOUR = NUM_MINUTES_IN_HOUR * NUM_SECONDS_IN_MINUTE
-NUM_SECONDS_IN_DAY = NUM_HOURS_IN_DAY * NUM_SECONDS_IN_HOUR
 
 
 def extract_total_days_value(td: timedelta) -> float:
