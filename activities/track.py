@@ -1,4 +1,4 @@
-from activities.constants import DATETIME_FORMAT
+from activities.constants import DEFAULT_DATETIME_FORMAT
 from datetime import datetime
 import os
 
@@ -17,8 +17,8 @@ def track(path):
     with open(path, "a") as f:
         f.write(
             "{},{},{}\n".format(
-                started.strftime(DATETIME_FORMAT),
-                finished.strftime(DATETIME_FORMAT),
+                started.strftime(DEFAULT_DATETIME_FORMAT),
+                finished.strftime(DEFAULT_DATETIME_FORMAT),
                 activity
             )
         )

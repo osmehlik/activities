@@ -1,4 +1,4 @@
-from activities.constants import DATETIME_FORMAT, \
+from activities.constants import DEFAULT_DATETIME_FORMAT, \
                                  DEFAULT_SORT_BY, \
                                  DEFAULT_TIMEDELTA_FORMAT
 from activities.time_extractors import *
@@ -21,8 +21,8 @@ def report(path,
         reader = csv.reader(f)
         next(reader)  # skip header
         for row in reader:
-            started = datetime.strptime(row[0], DATETIME_FORMAT)
-            finished = datetime.strptime(row[1], DATETIME_FORMAT)
+            started = datetime.strptime(row[0], DEFAULT_DATETIME_FORMAT)
+            finished = datetime.strptime(row[1], DEFAULT_DATETIME_FORMAT)
             activity = row[2]
             length = finished - started
             if activity in activity_to_length:
