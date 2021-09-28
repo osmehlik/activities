@@ -1,7 +1,7 @@
 from activities.constants import DEFAULT_DATETIME_FORMAT, \
                                  DEFAULT_SORT_BY, \
                                  DEFAULT_TIMEDELTA_FORMAT
-from activities.time_extractors import *
+from activities.time import *
 from datetime import datetime
 import csv
 import sys
