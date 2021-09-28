@@ -4,6 +4,7 @@ from activities.constants import DEFAULT_DATETIME_FORMAT, \
 from activities.time import *
 from datetime import datetime
 import csv
+import os
 import sys
 
 
@@ -11,6 +12,10 @@ def report(path,
            sort_by=DEFAULT_SORT_BY,
            timedelta_fmt=DEFAULT_TIMEDELTA_FORMAT):
     """Shows activity report from file"""
+
+    if not os.path.exists(path):
+        print("We cannot show a report from a file that does not exist")
+        sys.exit(1)
 
     # Populate activity_to_length, which is
     # map of activity name to total time spent on that activity
