@@ -23,12 +23,11 @@ def report(path,
 
     activity_max_len = 0
     with open(path, "r") as f:
-        reader = csv.reader(f)
-        next(reader)  # skip header
+        reader = csv.DictReader(f)
         for row in reader:
-            started = datetime.strptime(row[0], DEFAULT_DATETIME_FORMAT)
-            finished = datetime.strptime(row[1], DEFAULT_DATETIME_FORMAT)
-            activity = row[2]
+            started = datetime.strptime(row["started"], DEFAULT_DATETIME_FORMAT)
+            finished = datetime.strptime(row["finished"], DEFAULT_DATETIME_FORMAT)
+            activity = row["activity"]
             length = finished - started
             if activity in activity_to_length:
                 activity_to_length[activity] += length
