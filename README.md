@@ -66,3 +66,9 @@ activities-cli report -s aa
 ```
 pip uninstall activities
 ```
+
+## Running unittests
+
+```
+pytest -v
+```
