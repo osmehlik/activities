@@ -57,18 +57,24 @@ def report(path,
     def describe_activity(activity):
         return activity.rjust(activity_max_len, " ")
 
+    supported_timedelta_fmts = set(["python-default", "td", "th", "tm"])
+
+    # Error on unknown format
+    if timedelta_fmt not in supported_timedelta_fmts:
+        print("Unknown time length format")
+        sys.exit(1)
+
     # Prepare functions to describe length
     if timedelta_fmt == "python-default":
         describe_length = str
-    elif timedelta_fmt == "td":
-        describe_length = extract_total_days_str
-    elif timedelta_fmt == "th":
-        describe_length = extract_total_hours_str
-    elif timedelta_fmt == "tm":
-        describe_length = extract_total_minutes_str
     else:
-        print("Unknown time length format")
-        sys.exit(1)
+        timedelta_value_extractors = {
+            "td": extract_total_days,
+            "th": extract_total_hours,
+            "tm": extract_total_minutes
+        }
+        describe_length = lambda td: "{0:.2f}".format(timedelta_value_extractors[timedelta_fmt](td))
+
 
     # Print activities and lengths
     for activity, length in activities:
