@@ -28,7 +28,7 @@ def make_parser():
     parser.add_argument(
         "-l",
         help="when reporting, how to format time lengths, "
-             "one of: python-default/td/th/tm",
+             "one of: python-default/td/th/tm/hm",
         default=DEFAULT_TIMEDELTA_FORMAT
     )
     return parser
