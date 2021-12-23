@@ -45,30 +45,24 @@ To show total time spent on different activities, run:
 activities-cli report
 ```
 
-By default it shows report sorted by length, descending
-(= most time wasters first).
-
-You can sort report output with `-s` *METHOD*, where *METHOD* is one of:
-
-- `aa` - sort by activity, ascending
-- `ad` - sort by activity, descending
-- `la` - sort by length, ascending
-- `ld` - sort by length, descending
-
-So, to show report sorted by activity, ascending, run:
+It shows report of this form:
 
 ```
-activities-cli report -s aa
+     studying    134 hours 25 minutes
+playing piano     16 hours  4 minutes
+      running      5 hours 17 minutes
 ```
+
+## Advanced usage
+
+See [doc/advanced_usage.md](doc/advanced_usage.md).
+
+## Developer usage
+
+See [doc/developer_usage.md](doc/developer_usage.md).
 
 ## Uninstallation
 
 ```
 pip uninstall activities
-```
-
-## Running unittests
-
-```
-pytest -v
 ```
