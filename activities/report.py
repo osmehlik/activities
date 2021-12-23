@@ -1,6 +1,8 @@
 from activities.constants import DEFAULT_DATETIME_FORMAT, \
-                                 DEFAULT_SORT_BY, \
-                                 DEFAULT_TIMEDELTA_FORMAT
+                                 DEFAULT_SORTING_METHOD, \
+                                 DEFAULT_TIMEDELTA_FORMAT, \
+                                 SUPPORTED_SORTING_METHODS, \
+                                 SUPPORTED_TIMEDELTA_FORMATS
 from activities.time import *
 from datetime import datetime
 import csv
@@ -9,12 +11,22 @@ import sys
 
 
 def report(path,
-           sort_by=DEFAULT_SORT_BY,
-           timedelta_fmt=DEFAULT_TIMEDELTA_FORMAT):
+           sorting_method=DEFAULT_SORTING_METHOD,
+           timedelta_format=DEFAULT_TIMEDELTA_FORMAT):
     """Shows activity report from file"""
 
+    err_msg_begin = "To show activity report, you should specify"
+
     if not os.path.exists(path):
-        print("We cannot show a report from a file that does not exist")
+        print(err_msg_begin, "a path to existing file :)")
+        sys.exit(1)
+
+    if sorting_method not in SUPPORTED_SORTING_METHODS:
+        print(err_msg_begin, "a supported sorting method :)")
+        sys.exit(1)
+
+    if timedelta_format not in SUPPORTED_TIMEDELTA_FORMATS:
+        print(err_msg_begin, "a supported timedelta format :)")
         sys.exit(1)
 
     # Populate activity_to_length, which is
@@ -47,46 +59,36 @@ def report(path,
     activities = list(activity_to_length.items())
 
     # Sort list of activities
-    if sort_by == "aa":  # activity ascending
+    if sorting_method == "aa":  # activity ascending
         activities.sort(key=lambda row: row[0], reverse=False)
-    elif sort_by == "ad":  # activity descending
+    elif sorting_method == "ad":  # activity descending
         activities.sort(key=lambda row: row[0], reverse=True)
-    elif sort_by == "la":  # length ascending
+    elif sorting_method == "la":  # time ascending
         activities.sort(key=lambda row: row[1], reverse=False)
-    elif sort_by == "ld":  # length descending
+    elif sorting_method == "ld":  # time descending
         activities.sort(key=lambda row: row[1], reverse=True)
-    else:
-        print("Unknown sort_by value")
-        sys.exit(1)
 
     # Prepare functions to describe activity
     def describe_activity(activity):
         return activity.rjust(activity_max_len, " ")
 
-    supported_timedelta_fmts = set(["python-default", "td", "th", "tm", "hm"])
-
-    # Error on unknown format
-    if timedelta_fmt not in supported_timedelta_fmts:
-        print("Unknown time length format")
-        sys.exit(1)
-
     # Prepare functions to describe length
-    if timedelta_fmt == "python-default":
+    if timedelta_format == "str":
         describe_length = str
-    if timedelta_fmt == "hm":
+    elif timedelta_format == "hm":
         def describe_length(td):
             hours, minutes = extract_hours_minutes(td)
             return "{:6.0f} hours {:2.0f} minutes".format(hours, minutes)
     else:
         timedelta_value_extractors = {
-            "td": extract_total_days,
-            "th": extract_total_hours,
-            "tm": extract_total_minutes
+            "d": extract_total_days,
+            "h": extract_total_hours,
+            "m": extract_total_minutes
         }
 
         def describe_length(td):
-            return "{0:.2f}".format(
-                timedelta_value_extractors[timedelta_fmt](td)
+            return "{:6.2f}".format(
+                timedelta_value_extractors[timedelta_format](td)
             )
 
     # Print activities and lengths

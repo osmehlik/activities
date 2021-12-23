@@ -2,7 +2,7 @@
 
 
 from activities.constants import DEFAULT_DATABASE_PATH, \
-                                 DEFAULT_SORT_BY, \
+                                 DEFAULT_SORTING_METHOD, \
                                  DEFAULT_TIMEDELTA_FORMAT
 from activities.track import track
 from activities.report import report
@@ -23,12 +23,12 @@ def make_parser():
     parser.add_argument(
         '-s',
         help="when reporting, sort by, one of: aa/ad/la/ld",
-        default=DEFAULT_SORT_BY
+        default=DEFAULT_SORTING_METHOD
     )
     parser.add_argument(
         "-l",
         help="when reporting, how to format time lengths, "
-             "one of: python-default/td/th/tm/hm",
+             "one of: str/d/h/m/hm",
         default=DEFAULT_TIMEDELTA_FORMAT
     )
     return parser
@@ -40,9 +40,10 @@ def main():
     if args.action == "track":
         track(args.f)
     elif args.action == "report":
-        report(args.f, sort_by=args.s, timedelta_fmt=args.l)
+        report(args.f, sorting_method=args.s, timedelta_format=args.l)
     else:
-        print("Unknown action")
+        print("To do an action, you should specify a supported one :)")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
