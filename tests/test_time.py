@@ -11,11 +11,13 @@ class TestExtractTotalDays(object):
         actual = extract_total_days(td)
         expected = 1/2
         assert actual == pytest.approx(expected)
+
     def test_exactly_one(self):
         td = timedelta(hours=24)
         actual = extract_total_days(td)
         expected = 1
         assert actual == pytest.approx(expected)
+
     def test_more_than_one(self):
         td = timedelta(hours=48)
         actual = extract_total_days(td)
@@ -29,11 +31,13 @@ class TestExtractTotalHours(object):
         actual = extract_total_hours(td)
         expected = 1/2
         assert actual == pytest.approx(expected)
+
     def test_exactly_one(self):
         td = timedelta(minutes=60)
         actual = extract_total_hours(td)
         expected = 1
         assert actual == pytest.approx(expected)
+
     def test_more_than_one(self):
         td = timedelta(minutes=120)
         actual = extract_total_hours(td)
@@ -47,11 +51,13 @@ class TestExtractTotalMinutes(object):
         actual = extract_total_minutes(td)
         expected = 1/2
         assert actual == pytest.approx(expected)
+
     def test_exactly_one(self):
         td = timedelta(seconds=60)
         actual = extract_total_minutes(td)
         expected = 1
         assert actual == pytest.approx(expected)
+
     def test_more_than_one(self):
         td = timedelta(seconds=120)
         actual = extract_total_minutes(td)
