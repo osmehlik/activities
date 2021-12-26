@@ -1,5 +1,5 @@
 
-# activities
+# activities-cli
 
 A simple command line time tracker.
 

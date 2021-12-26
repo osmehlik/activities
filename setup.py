@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='activities',
+    name='activities-cli',
     description='A simple command line time tracker',
     version='0.0.1',
     license='BSD 2-Clause License',
